@@ -1,0 +1,1 @@
+export const screenRule = (definer, screen, params) => definer({ screenRule: true }, { type: 'CHANGE_SCREEN', screen, ...params })

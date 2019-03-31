@@ -4,7 +4,8 @@
   "private": false,
   "dependencies": {
     "destate": "0.0.10",
-    "destate-common-reducers": "0.0.1",
+    "destate-common-reducers": "0.0.3",
+    "prop-types": "^15.7.2",
     "ramda": "^0.26.1",
     "react": "^16.8.6",
     "react-destate": "0.0.8",

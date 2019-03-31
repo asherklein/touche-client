@@ -3,7 +3,10 @@ import rulebook from './ruleBook'
 const { defineRule } = rulebook
 const socket = io('http://localhost:5000')
 console.log('rulebook', rulebook)
-export const startConvo = (topic) => socket.emit('startconvo', topic)
+const emit = (title, ...params) => new Promise((resolve, reject) => {
+    socket.emit(title, ...params, resolve)
+}) 
+export const startConvo = (topic) => emit('startconvo', topic)
 
 
 // Global received

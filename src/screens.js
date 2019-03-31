@@ -1,12 +1,15 @@
 import rulebook from './ruleBook'
 const { defineRule } = rulebook
 
-export const SCREENS = {
+export const SCREEN_NAMES = {
+    CONVO_LIST: '@@CONVO_LIST',
     CONVO: '@@CONVO',
     NEW_CONVO: '@@NEW_CONVO'
 }
 
-export const screenRule = (screen, params) => defineRule({ screenRule: true }, { type: 'CHANGE_SCREEN', screen, ...(params || {}) })
+export const screenRule = (screenName, screenParams) => defineRule({ screenManager: true }, { type: 'SCREEN_CHANGE', screenName, screenParams })
 
-export const goToConvo = (id) => screenRule(defineRule, SCREENS.CONVO, { id })
-export const goToNewConvo = () => screenRule(defineRule, SCREENS.NEW_CONVO)
+screenRule(SCREEN_NAMES.CONVO_LIST)
+
+export const goToConvo = (id) => screenRule(SCREEN_NAMES.CONVO, { id })
+export const goToNewConvo = () => screenRule(SCREEN_NAMES.NEW_CONVO)

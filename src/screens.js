@@ -11,5 +11,5 @@ export const screenRule = (screenName, screenParams) => defineRule({ screenManag
 
 screenRule(SCREEN_NAMES.CONVO_LIST)
 
-export const goToConvo = (id) => screenRule(SCREEN_NAMES.CONVO, { id })
+export const goToConvo = (convo_id, point_id) => screenRule(SCREEN_NAMES.CONVO, { convo_id, point_id })
 export const goToNewConvo = () => screenRule(SCREEN_NAMES.NEW_CONVO)

@@ -28,5 +28,5 @@ const ConvoListScreen = ({ convos }) => (
     </div>
 )
 
-const convos = concatterProp('NEW_CONVOS', 'convos')
+const convos = concatterProp('RECEIVED_CONVOS', 'convos')
 export default connect({ convos }, ConvoListScreen)

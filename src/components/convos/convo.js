@@ -21,12 +21,15 @@ export const ConvoList = ({ convos, ...props }) => (
     </ul>
 )
 
-const ConvoListScreen = ({ convos }) => (
+const ConvoListScreen = ({ convos, rulebook:{rulebook} }) => {
+    console.log('convos', convos)
+    console.log('made it here twice')
+    return(
     <div>
         <ConvoList convos={convos} />
         <NewConvoButton />
     </div>
-)
+)}
 
-const convos = concatterProp('NEW_CONVOS', 'convos')
-export default connect({ convos }, ConvoListScreen)
+const convos = concatterProp('RECEIVED_CONVOS', 'convos')
+export default connect({ convos }, ConvoListScreen) 

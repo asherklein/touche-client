@@ -7,18 +7,9 @@ import Screen from './components/screen-manager/Screen'
 import { SCREEN_NAMES } from './screens'
 import ConvoListScreen from './components/convos/convo-list'
 import NewConvoScreen from './components/convos/new-convo'
+import ConvoScreen from './components/chat/chat'
+
 const { defineRule } = rulebook
-defineRule({ name: 'ConvoList' }, {
-  type: 'NEW_CONVOS', convos: [
-    { convo_id: 1, topic: 'Abortion' },
-    { convo_id: 2, topic: 'Taxes' },
-  ]
-})
-defineRule({ name: 'ConvoList' }, {
-  type: 'NEW_CONVOS', convos: [
-    { convo_id: 3, topic: 'Abortion & Taxes' }
-  ]
-})
 
 class App extends Component {
   constructor(props) {
@@ -35,6 +26,9 @@ class App extends Component {
           </Screen>
           <Screen screenName={SCREEN_NAMES.NEW_CONVO}>
             {() => <NewConvoScreen goal={{ name: 'NewConvo' }} />}
+          </Screen>
+          <Screen screenName={SCREEN_NAMES.CONVO}>
+            {({ convo_id }) => <ConvoScreen goal={{ name: 'Convo', convo_id }} convo_id={convo_id} />}
           </Screen>
           <div className="App">
             <ConvoListScreen goal={{ name: 'ConvoList' }} />

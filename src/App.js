@@ -22,13 +22,20 @@ class App extends Component {
       <Provider rulebook={rulebook} >
         <ScreenManager goal={{ screenManager: true }}>
           <Screen screenName={SCREEN_NAMES.CONVO_LIST}>
-            {() => <ConvoListScreen goal={{ name: 'ConvoList' }} />}
+            {() => <ConvoListScreen goal={{ 
+              name: 'ConvoList',
+              msgAccess: true
+              }} />}
           </Screen>
           <Screen screenName={SCREEN_NAMES.NEW_CONVO}>
             {() => <NewConvoScreen goal={{ name: 'NewConvo' }} />}
           </Screen>
           <Screen screenName={SCREEN_NAMES.CONVO}>
-            {({ convo_id }) => <ConvoScreen goal={{ name: 'Convo', convo_id }} convo_id={convo_id} />}
+            {({ convo_id }) => <ConvoScreen goal={{ 
+              name: 'Convo',
+              msgAccess: true,
+              convo_id
+              }} convo_id={convo_id} />}
           </Screen>
           <div className="App">
             <ConvoListScreen goal={{ name: 'ConvoList' }} />

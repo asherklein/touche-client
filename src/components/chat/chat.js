@@ -22,7 +22,7 @@ class Messages extends React.Component {
     componentDidMount = () => {
         const { convo_id } = this.props
         console.log('convo_id', convo_id)
-        getMessagesForConvo(convo_id)
+        // getMessagesForConvo(convo_id)
     }
     render() {
         const { messages } = this.props
@@ -31,4 +31,4 @@ class Messages extends React.Component {
         </ul>
     }
 }
-export default connect({ messages: concatterProp('RECEIVED_MSGS', 'messages') }, Messages)
+export default connect({ messages: concatterProp('RECEIVED_MSGS', 'msgs') }, Messages)

@@ -2,11 +2,15 @@ import React from 'react'
 import { goToConvo, goToNewConvo } from '../../screens'
 import { connect } from 'react-destate'
 import { concatterProp } from 'destate-common-reducers'
+import { merge, values } from 'ramda'
 
-export const ConvoListItem = ({ convo_id, topic, last, missed, time }) => (
+export const ConvoListItem = ({ convo_id, topic, content, missed, sent_at }) => (
     <li
         onClick={() => goToConvo(convo_id)}
-    >{topic}</li>
+    ><p>{topic}</p>
+        <span style={{ fontSize: '70%' }}>{sent_at}</span> 
+        <span style={{ fontSize: '70%' }}> {content}</span>
+    </li>
 )
 
 export const NewConvoButton = (props) => (
@@ -17,16 +21,17 @@ export const NewConvoButton = (props) => (
 
 export const ConvoList = ({ convos, ...props }) => (
     <ul>
-        {convos.map(convo => <ConvoListItem key={convo.convo_id} {...convo} {...props} />)}
+        {values(convos).map(convo => <ConvoListItem key={convo.convo_id} {...convo} {...props} />)}
     </ul>
 )
 
-const ConvoListScreen = ({ convos }) => (
+const msgToConvos = (convos = {}, { convo_id, topic, sent_by, sent_at, content }) => merge(convos, { [convo_id]: { convo_id, topic, sent_by, sent_at, content } })
+const ConvoListScreen = ({ messages }) => (
     <div>
-        <ConvoList convos={convos} />
+        <ConvoList convos={messages.reduce(msgToConvos, {})} />
         <NewConvoButton />
     </div>
 )
 
-const convos = concatterProp('RECEIVED_CONVOS', 'convos')
-export default connect({ convos }, ConvoListScreen)
+const messages = concatterProp('RECEIVED_MSGS', 'msgs')
+export default connect({ messages }, ConvoListScreen)
